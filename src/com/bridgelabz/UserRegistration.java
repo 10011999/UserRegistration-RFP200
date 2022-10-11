@@ -5,45 +5,42 @@ import java.util.regex.Pattern;
 
 public class UserRegistration {
     public static void main(String[] args) {
-        System.out.println("Welcome to User Registration Page\n");
-        System.out.println("Enter first name\n");
-        java.util.Scanner scanner = new Scanner(System.in);
+        Validation validation = new Validation();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to User Registration Page");
+
+        System.out.println("\nEnter first name\n");
         String firstName = scanner.nextLine();
-        System.out.println("Enter last name\n");
-        String lastName = scanner.nextLine();
-        Boolean check = validateFirstName(firstName);
-        if (check) {
+        Boolean firstNameCheck = validation.validateFirstName(firstName);
+        if (firstNameCheck) {
             System.out.println("Valid first name");
-        } else
+        } else {
             System.out.println("Invalid first name");
-        Boolean lastNameCheck = validateLastname(lastName);
+        }
+        System.out.println("\nEnter last name\n");
+        String lastName = scanner.nextLine();
+        Boolean lastNameCheck = validation.validateLastname(lastName);
         if (lastNameCheck) {
             System.out.println("Valid last name");
-        } else
+        } else {
             System.out.println("Invalid last name");
+        }
         System.out.println("\nEnter email id\n");
         String email = scanner.nextLine();
-        Boolean emailCheck = validateEmail(email);
+        Boolean emailCheck = validation.validateEmail(email);
         if (emailCheck) {
             System.out.println("Valid email id");
-        } else
+        } else {
             System.out.println("Invalid email id");
+        }
+        System.out.println("\nEnter mobile number\n");
+        String phone = scanner.nextLine();
+        Boolean phoneCheck = validation.validatePhone(phone);
+        if (phoneCheck) {
+            System.out.println("Valid phone number");
+        } else {
+            System.out.println("Invalid phone number");
+        }
         scanner.close();
-    }
-
-    private static Boolean validateFirstName(String firstName) {
-        String matcher = "^[A-Z]{1}[a-z]{2,}$";
-        Boolean check = Pattern.matches(matcher, firstName);
-        return check;
-    }
-    private static Boolean validateLastname(String lastName) {
-        String lastNameMatcher = "^[A-Z]{1}[a-z]{2,}$";
-        Boolean check = Pattern.matches(lastNameMatcher, lastName);
-        return check;
-    }
-    private static Boolean validateEmail(String email) {
-        String emailMatcher = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-        Boolean check = Pattern.matches(emailMatcher, email);
-        return check;
     }
 }
